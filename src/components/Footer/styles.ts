@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const Container = styled.footer`
+export const Container = styled(motion.footer)`
   position: absolute;
-  bottom: 32px;
-  left: 32px;
+  bottom: 48px;
+  left: 48px;
 
   h4 {
     color: #6421ff;
