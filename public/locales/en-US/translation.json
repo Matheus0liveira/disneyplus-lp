@@ -1,0 +1,15 @@
+{
+  "main": {
+    "title": "Enjoy the best stories, all in one place :) ",
+    "plan_button": "Select your plan",
+    "image_alt": "Disney+ Logo"
+  },
+  "footer": {
+    "part1": "Don't have a Disney+ account ?",
+    "part2": "Create your free account now"
+  },
+  "select_language": {
+    "aria_label": "Language",
+    "placeholder": "Select your language"
+  }
+}

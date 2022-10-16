@@ -30,7 +30,8 @@ export const StyledIcon = styled(SelectPrimitive.SelectIcon)`
 `;
 export const StyledContent = styled(SelectPrimitive.Content)`
   overflow: hidden;
-  background: #fafafa;
+  background: #1c1922;
+  border: 2px solid #35394d;
 
   padding: 8px;
   border-radius: 4px;
@@ -46,7 +47,7 @@ export const StyledItem = styled(SelectPrimitive.Item)`
   align-items: center;
   column-gap: 80px;
 
-  color: #6421ff;
+  color: #fafafa;
 
   border-radius: 4px;
 
@@ -60,12 +61,12 @@ export const StyledItem = styled(SelectPrimitive.Item)`
   cursor: default;
 
   &[data-disabled] {
-    color: black;
+    color: fafafa;
     pointer-events: none;
   }
 
   &[data-highlighted] {
-    background-color: #6421ff;
+    background-color: #35394d;
     color: #fafafa;
   }
 

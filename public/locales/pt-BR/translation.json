@@ -1,0 +1,15 @@
+{
+  "main": {
+    "title": "Aproveite as melhores histórias, tudo em um só lugar :)",
+    "plan_button": "Escolha seu plano",
+    "image_alt": "Disney+ Logo"
+  },
+  "footer": {
+    "part1": "Não possui uma conta na Disney+ ?",
+    "part2": "Crie sua conta gratuita agora"
+  },
+  "select_language": {
+    "aria_label": "Língua",
+    "placeholder": "Selecione uma linguagem"
+  }
+}

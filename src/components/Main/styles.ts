@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 
 export const Container = styled(motion.div).attrs({
   initial: "hidden",
-  animate: "visible",
   variants: {
     visible: {
       transition: {
@@ -12,6 +11,8 @@ export const Container = styled(motion.div).attrs({
     },
   },
 })`
+  overflow: hidden;
+
   width: 100%;
   height: 100vh;
   max-width: 1620px;
@@ -33,15 +34,5 @@ export const Container = styled(motion.div).attrs({
     width: 100%;
     max-width: 240px;
     margin-bottom: 40px;
-  }
-
-  @media (max-width: 620px) {
-    justify-content: flex-start;
-    padding: 24px;
-
-    button {
-      margin-top: auto;
-      margin-bottom: 96px;
-    }
   }
 `;

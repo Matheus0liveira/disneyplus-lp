@@ -1,23 +1,43 @@
 import { AnimatedCharacters } from "../AnimatedText";
 import { Button } from "../Button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import * as S from "./styles";
 import { useMemo } from "react";
+import { useReplayAnimation } from "../../hooks/useReplayAnimation";
 
 export function Main() {
-  const transition = useMemo(
+  const { isReplay } = useReplayAnimation();
+  const { t } = useTranslation();
+
+  const variants: Variants = useMemo(
     () => ({
-      duration: 1.2,
-      delay: 1.4,
-      ease: [0, 0.71, 0.2, 1.01],
+      visible: {
+        opacity: 1,
+        y: "0",
+        transition: {
+          delay: 1.6,
+          type: "spring",
+        },
+      },
+      hidden: {
+        y: "10%",
+        opacity: 0,
+        transition: {
+          delay: 1.6,
+          type: "spring",
+        },
+      },
     }),
     []
   );
-  const initialAndAnimate = useMemo(
+  const handlers = useMemo(
     () => ({
       initial: { opacity: 0, y: "300%" },
-      animate: { opacity: 1, y: "0" },
+      animate: isReplay ? "visible" : "hidden",
+      exit: { y: "10%", opacity: 0 },
+      transition: { type: "spring" },
     }),
     []
   );
@@ -25,22 +45,41 @@ export function Main() {
   return (
     <S.Container>
       <AnimatedCharacters />
-      <motion.div
-        {...initialAndAnimate}
-        transition={{ ...transition, delay: 1.6 }}
-      >
-        <img src="/disney-logo.svg" alt="disney-logo" />
-      </motion.div>
-      <motion.div
-        {...initialAndAnimate}
-        transition={transition}
-        drag
-        dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
-        dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-        dragElastic={0.5}
-      >
-        <Button>Escolha seu plano</Button>
-      </motion.div>
+
+      <AnimatePresence>
+        {!!isReplay && (
+          <motion.div
+            {...handlers}
+            variants={{
+              ...variants,
+              visible: {
+                ...variants.visible,
+                transition: {
+                  type: "spring",
+                  delay: 1.8,
+                },
+              },
+            }}
+          >
+            <img src="/disney-logo.svg" alt={t("main.image_alt")} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {!!isReplay && (
+          <motion.div
+            {...handlers}
+            variants={variants}
+            drag
+            dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
+            dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+            dragElastic={0.5}
+          >
+            <Button>{t("main.plan_button")}</Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </S.Container>
   );
 }
